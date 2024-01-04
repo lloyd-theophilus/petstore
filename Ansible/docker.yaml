@@ -1,5 +1,5 @@
 - name: docker build and push
-  hosts: jenkins  # Replace with the hostname or IP address of your target server
+  hosts: http://35.178.32.219:8080   # Replace with the hostname or IP address of your target server
   become: yes  # Run tasks with sudo privileges
 
   tasks:
@@ -32,3 +32,7 @@
 
     - name: Run container
       command: docker run -d --name pet1 -p 8081:8080 lloyddigital/petstore:latest
+
+    - name: Deploy Kubernetes Application
+      hosts: k8s  # Replace with your target Kubernetes master host or group
+      gather_facts: yes  # Gather facts about the target host
